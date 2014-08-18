@@ -4,12 +4,24 @@
 <head>
   <title>Todo App</title>
   <script src="https://code.angularjs.org/1.2.9/angular.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
   <script src="app.js"></script>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body ng-controller="TodoCtrl">
+	<h2>Total todos: {{getTotalTodos()}}</h2>
+	<ul class="unstyled">
+		<li ng-repeat="todo in todos">
+			<input type="checkbox" ng-model="todo.done">
+			<span class="done-{{todo.done}}">{{todo.text}}</span>
+		</li>
+	</ul>
+	<form class="form-horizontal">
+		<input type="text" ng-model="formTodoText" ng-model-instant>
+		<button class="btn" ng-click="addTodo()"><i class="icon-plus"></i> Add</button>
+	</form>
 
+	<button class="btn-large" ng-click="clearCompleted()"><i class="icon-trash"></i> Clear Completed</button>
 </body>
